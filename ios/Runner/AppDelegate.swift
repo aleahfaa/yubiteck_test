@@ -16,7 +16,9 @@ import UIKit
     // Bonus native module: a small platform channel exposing haptic
     // feedback and basic device info to the Dart side (see
     // lib/core/services/native/native_bridge_service.dart).
-    let registrar = engineBridge.pluginRegistry.registrar(forPlugin: "NativeBridgeChannel")
+    guard
+      let registrar = engineBridge.pluginRegistry.registrar(forPlugin: "NativeBridgeChannel")
+    else { return }
     let channel = FlutterMethodChannel(
       name: "com.yubiteck.test/native_bridge",
       binaryMessenger: registrar.messenger()
