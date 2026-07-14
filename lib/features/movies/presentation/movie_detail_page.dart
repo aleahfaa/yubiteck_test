@@ -24,6 +24,8 @@ class MovieDetailPage extends GetView<MovieDetailController> {
     return fromRoute ?? _shell?.id;
   }
 
+  String get _heroTag => Get.parameters['heroTag'] ?? 'movie-poster-$_movieId';
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,7 +42,10 @@ class MovieDetailPage extends GetView<MovieDetailController> {
               },
             ),
           ),
-          ViewLoaded<MovieDetail>(:final data) => _DetailContent(detail: data),
+          ViewLoaded<MovieDetail>(:final data) => _DetailContent(
+            detail: data,
+            heroTag: _heroTag,
+          ),
           ViewIdle<MovieDetail>() ||
           ViewEmpty<MovieDetail>() => const AppLoadingView(),
         };
@@ -66,7 +71,8 @@ class _LoadingShell extends StatelessWidget {
 
 class _DetailContent extends StatelessWidget {
   final MovieDetail detail;
-  const _DetailContent({required this.detail});
+  final String heroTag;
+  const _DetailContent({required this.detail, required this.heroTag});
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -95,7 +101,7 @@ class _DetailContent extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Hero(
-                      tag: 'movie-poster-${detail.id}',
+                      tag: heroTag,
                       child: ClipRect(
                         child: SizedBox(
                           width: 96,

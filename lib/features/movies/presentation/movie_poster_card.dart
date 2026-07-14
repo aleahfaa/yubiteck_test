@@ -7,7 +7,13 @@ import 'rating_badge.dart';
 class MoviePosterCard extends StatelessWidget {
   final Movie movie;
   final VoidCallback? onTap;
-  const MoviePosterCard({super.key, required this.movie, this.onTap});
+  final String? heroTag;
+  const MoviePosterCard({
+    super.key,
+    required this.movie,
+    this.onTap,
+    this.heroTag,
+  });
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
@@ -18,7 +24,7 @@ class MoviePosterCard extends StatelessWidget {
         children: [
           Expanded(
             child: Hero(
-              tag: 'movie-poster-${movie.id}',
+              tag: heroTag ?? 'movie-poster-${movie.id}',
               child: Stack(
                 fit: StackFit.expand,
                 children: [

@@ -29,6 +29,7 @@ class MoviesPage extends StatelessWidget {
           ],
           bottom: TabBar(
             isScrollable: true,
+            tabAlignment: TabAlignment.start,
             indicatorColor: scheme.onSurface,
             indicatorWeight: 2,
             labelColor: scheme.onSurface,

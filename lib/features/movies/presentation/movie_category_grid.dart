@@ -81,12 +81,14 @@ class _MovieCategoryGridState extends State<MovieCategoryGrid>
                 return const AppLoadingView();
               }
               final movie = data[index];
+              final heroTag = 'movie-poster-${widget.type.name}-${movie.id}';
               return MoviePosterCard(
                 movie: movie,
+                heroTag: heroTag,
                 onTap: () => Get.toNamed(
                   AppRoutes.movieDetail,
                   arguments: movie,
-                  parameters: {'id': '${movie.id}'},
+                  parameters: {'id': '${movie.id}', 'heroTag': heroTag},
                 ),
               );
             },
